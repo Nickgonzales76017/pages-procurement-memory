@@ -1,0 +1,3 @@
+#!/usr/bin/env bash
+echo "[bonfyre] Rebuilding site after merge…"
+bonfyre-emit artifacts/ --out site/ --format html 2>/dev/null || true

@@ -1,0 +1,91 @@
+name: Bonfyre Pipeline — Procurement Memory Site
+on:
+  push:
+    branches: [main]
+    paths: ['input/**']
+permissions:
+  contents: write
+  pages: write
+  id-token: write
+concurrency:
+  group: bonfyre-pipeline
+  cancel-in-progress: false
+jobs:
+  process:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 2
+      - name: Build Bonfyre binaries
+        run: |
+          sudo apt-get update -qq
+          sudo apt-get install -y -qq libsqlite3-dev pandoc
+          git clone --depth 1 https://github.com/Nickgonzales76017/bonfyre.git /tmp/bonfyre
+          cd /tmp/bonfyre && make -j$(nproc) 2>&1 | tail -3
+          sudo make install
+      - name: Detect new files
+        id: detect
+        run: |
+          CHANGED=$(git diff --name-only HEAD~1 HEAD -- 'input/' || true)
+          if [ -z "$CHANGED" ]; then
+            echo "skip=true" >> "$GITHUB_OUTPUT"
+          else
+            echo "skip=false" >> "$GITHUB_OUTPUT"
+            echo "$CHANGED" > /tmp/changed_files.txt
+          fi
+      - name: Run pipeline
+        if: steps.detect.outputs.skip != 'true'
+        run: |
+          mkdir -p artifacts site
+
+          while IFS= read -r f; do
+            [ -f "$f" ] || continue
+            base=$(basename "$f" | sed "s/\.[^.]*$//")
+            ext="${f##*.}"
+            case "$ext" in
+              wav|mp3|m4a|ogg|flac|webm)
+                bonfyre-media-prep "$f" --out "artifacts/${base}.prep.json"
+                bonfyre-transcribe "artifacts/${base}.prep.json" --out "artifacts/${base}.transcript.json"
+                bonfyre-brief "artifacts/${base}.transcript.json" --out "artifacts/${base}.brief.json"
+                bonfyre-tag "artifacts/${base}.brief.json" --out "artifacts/${base}.tags.json"
+                bonfyre-embed "artifacts/${base}.tags.json" --out "artifacts/${base}.embed.json"
+                bonfyre-vec "artifacts/${base}.embed.json" --insert-db "artifacts/procurement.db"
+                bonfyre-ledger "artifacts/${base}.brief.json" --out "artifacts/${base}.value.json"
+                ;;
+              pdf|txt|md|docx)
+                bonfyre-brief "$f" --out "artifacts/${base}.brief.json"
+                bonfyre-tag "artifacts/${base}.brief.json" --out "artifacts/${base}.tags.json"
+                bonfyre-embed "artifacts/${base}.tags.json" --out "artifacts/${base}.embed.json"
+                bonfyre-vec "artifacts/${base}.embed.json" --insert-db "artifacts/procurement.db"
+                ;;
+            esac
+          done < /tmp/changed_files.txt
+          bonfyre-emit artifacts/ --out site/ --format html
+      - name: Commit results
+        if: steps.detect.outputs.skip != 'true'
+        run: |
+          git config user.name "Bonfyre Pipeline"
+          git config user.email "bonfyre-bot@users.noreply.github.com"
+          git add artifacts/ site/
+          git diff --cached --quiet && exit 0
+          git commit -m "[pipeline] processed $(cat /tmp/changed_files.txt | wc -l | tr -d ' ') file(s)"
+          git push
+  deploy:
+    needs: process
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: main
+      - uses: actions/configure-pages@v4
+        with:
+          enablement: true
+      - uses: actions/upload-pages-artifact@v3
+        with:
+          path: site
+      - id: deployment
+        uses: actions/deploy-pages@v4

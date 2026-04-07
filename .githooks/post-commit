@@ -1,0 +1,18 @@
+#!/usr/bin/env bash
+echo "[bonfyre] Running pipeline for Procurement Memory..."
+for f in input/*; do
+  [ -f "$f" ] || continue
+  base=$(basename "$f" | sed 's/\.[^.]*$//')
+  ext="${f##*.}"
+  case "$ext" in
+    wav|mp3|m4a|ogg|flac|webm)
+      bonfyre-media-prep "$f" --out "artifacts/${base}.prep.json" 2>/dev/null && bonfyre-transcribe "artifacts/${base}.prep.json" --out "artifacts/${base}.transcript.json" 2>/dev/null && bonfyre-brief "artifacts/${base}.transcript.json" --out "artifacts/${base}.brief.json" 2>/dev/null && bonfyre-tag "artifacts/${base}.brief.json" --out "artifacts/${base}.tags.json" 2>/dev/null || true
+      ;;
+    txt|md|pdf|docx)
+      bonfyre-brief "$f" --out "artifacts/${base}.brief.json" 2>/dev/null || true
+      bonfyre-tag "artifacts/${base}.brief.json" --out "artifacts/${base}.tags.json" 2>/dev/null || true
+      ;;
+  esac
+done
+bonfyre-emit artifacts/ --out site/ --format html 2>/dev/null || true
+echo "[bonfyre] Pipeline complete."

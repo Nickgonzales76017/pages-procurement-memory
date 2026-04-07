@@ -1,0 +1,6 @@
+artifacts/*.tmp
+artifacts/*.lock
+.DS_Store
+Thumbs.db
+*.onnx
+*.bin

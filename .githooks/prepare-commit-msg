@@ -1,0 +1,6 @@
+#!/usr/bin/env bash
+COMMIT_MSG_FILE="$1"
+count=$(find input/ -type f 2>/dev/null | wc -l | tr -d ' ')
+if [ "$count" -gt 0 ]; then
+  sed -i '' "1s/$/ [$count file(s) in pipeline]/" "$COMMIT_MSG_FILE" 2>/dev/null || true
+fi
