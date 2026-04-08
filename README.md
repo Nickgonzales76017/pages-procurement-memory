@@ -12,4 +12,4 @@
 2. Configure your GitHub token in Settings
 3. Drop a file — pipeline runs automatically
 
-Powered by [Bonfyre](https://github.com/Nickgonzales76017/bonfyre) — 47 C11 binaries, ~2.1 MB total.
+Powered by [Bonfyre](https://github.com/Nickgonzales76017/bonfyre) — 48 C11 binaries, ~2.1 MB total.
