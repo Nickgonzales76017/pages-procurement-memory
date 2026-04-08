@@ -15,14 +15,36 @@
 | OpenAI compatibility | Drop-in via **bonfyre-proxy** (`/v1/audio/transcriptions`, `/v1/chat/completions`) |
 | Tests passing | **167** |
 
-## Architecture — Hybrid Path 3
-- **WASM** (22KB): bonfyre-brief runs client-side for instant preview
-- **Actions**: Full pipeline on push — transcribe, tag, tone, render, emit
-- **Pages**: Auto-deploys on every push to `site/`
-
 ## Quick Start
-1. Go to [the live app](https://nickgonzales76017.github.io/pages-procurement-memory/)
-2. Configure your GitHub token in Settings
-3. Drop a file — pipeline runs automatically
 
-Powered by [Bonfyre](https://github.com/Nickgonzales76017/bonfyre) — 48 C11 binaries, ~2.1 MB total.
+### Browser-first GitHub-native intake
+
+1. Open the live Pages app.
+2. Select a file and download the intake-ready renamed copy.
+3. Open the repo `input/` folder from the app and upload that file with GitHub's own web UI.
+4. Commit to `main`; the Bonfyre Actions runtime processes it and republishes the site.
+
+### Local repo workflow
+
+```bash
+make setup
+cp ~/my-recording.wav input/
+git add input/ && git commit -m "add recording"
+git push
+```
+
+## Architecture
+
+```
+browser prepare  →  GitHub web upload  →  input/
+                                          ↓
+                             reusable Bonfyre runtime workflow
+                                          ↓
+                         artifacts/ + site/job.json + site/summary.json
+                                          ↓
+                                   site/  →  GitHub Pages
+```
+
+## Powered By
+
+[Bonfyre](https://github.com/Nickgonzales76017/bonfyre) — 48 composable C11 binaries. ~2.1 MB total.
