@@ -1,7 +1,7 @@
 {
   "id": "demo-procurement-memory",
   "file": "vendor-renewal-review.pdf",
-  "time": "Demo dataset",
+  "time": "Reference corpus",
   "status": "complete",
   "brief": "Procurement memory record captures a renewal deadline, pricing drift against the prior term, and unresolved service-level questions. Best follow-up is to surface this vendor for early negotiation while comparing substitution risk and implementation switching cost.",
   "tags": ["renewal", "pricing", "sla"],

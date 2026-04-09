@@ -2,7 +2,7 @@
   {
     "id": "demo-procurement-memory-a",
     "file": "vendor-renewal-review.pdf",
-    "time": "Demo dataset",
+    "time": "Reference corpus",
     "status": "complete",
     "brief": "Procurement memory record captures a renewal deadline, pricing drift against the prior term, and unresolved service-level questions. Best follow-up is to surface this vendor for early negotiation while comparing substitution risk and implementation switching cost.",
     "tags": [
@@ -14,15 +14,15 @@
     "demo": true,
     "searchSummary": "renewal risk, pricing drift, vendor review",
     "whyItMatters": "One vendor record becomes part of a searchable procurement memory.",
-    "searchIntro": "One vendor record becomes part of a searchable procurement memory. Search across the seeded records to feel that inside the app.",
+    "searchIntro": "One vendor record becomes part of a searchable procurement memory. Search across the reference records to feel that inside the app.",
     "searchOutputs": []
   },
   {
     "id": "demo-procurement-memory-b",
     "file": "Related vendor-renewal-review.pdf",
-    "time": "Demo dataset",
+    "time": "Reference corpus",
     "status": "complete",
-    "brief": "A second seeded record extends the same workflow so in-app search and reuse are visible instead of theoretical.",
+    "brief": "A second reference record extends the same workflow so in-app search and reuse are visible instead of theoretical.",
     "tags": [
       "renewal",
       "pricing",
@@ -32,15 +32,15 @@
     "demo": true,
     "searchSummary": "related signals, continuity, reuse",
     "whyItMatters": "One vendor record becomes part of a searchable procurement memory.",
-    "searchIntro": "One vendor record becomes part of a searchable procurement memory. Search across the seeded records to feel that inside the app.",
+    "searchIntro": "One vendor record becomes part of a searchable procurement memory. Search across the reference records to feel that inside the app.",
     "searchOutputs": []
   },
   {
     "id": "demo-procurement-memory-c",
     "file": "Follow-up vendor-renewal-review.pdf",
-    "time": "Demo dataset",
+    "time": "Reference corpus",
     "status": "complete",
-    "brief": "A third seeded record shows how this app can connect follow-up work, recurring themes, and downstream use without leaving the demo experience.",
+    "brief": "A third reference record shows how this app can connect follow-up work, recurring themes, and downstream use without leaving the demo experience.",
     "tags": [
       "renewal",
       "pricing",
@@ -50,7 +50,7 @@
     "demo": true,
     "searchSummary": "follow-up, memory, downstream action",
     "whyItMatters": "One vendor record becomes part of a searchable procurement memory.",
-    "searchIntro": "One vendor record becomes part of a searchable procurement memory. Search across the seeded records to feel that inside the app.",
+    "searchIntro": "One vendor record becomes part of a searchable procurement memory. Search across the reference records to feel that inside the app.",
     "searchOutputs": []
   }
 ]
