@@ -1,0 +1,59 @@
+{
+  "pipeline": "full_chain",
+  "version": "1.0",
+  "source": {
+    "duration_s": 56,
+    "url": "https://www.youtube.com/watch?v=qPiPM0Em3H8"
+  },
+  "pipeline_wall_s": 9.28,
+  "steps_total": 9,
+  "steps_ok": 9,
+  "steps_failed": 0,
+  "steps": [
+    {
+      "name": "fetch-metadata",
+      "wall_s": 2.88,
+      "exit": 0
+    },
+    {
+      "name": "download-audio",
+      "wall_s": 3.42,
+      "exit": 0
+    },
+    {
+      "name": "media-prep",
+      "wall_s": 0.135,
+      "exit": 0
+    },
+    {
+      "name": "transcribe",
+      "wall_s": 2.658,
+      "exit": 0
+    },
+    {
+      "name": "transcript-clean",
+      "wall_s": 0.059,
+      "exit": 0
+    },
+    {
+      "name": "paragraph",
+      "wall_s": 0.033,
+      "exit": 0
+    },
+    {
+      "name": "brief",
+      "wall_s": 0.039,
+      "exit": 0
+    },
+    {
+      "name": "proof",
+      "wall_s": 0.056,
+      "exit": 0
+    },
+    {
+      "name": "recipe",
+      "wall_s": 0.001,
+      "exit": 0
+    }
+  ]
+}

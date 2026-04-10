@@ -1,0 +1,11 @@
+{
+  "family_id": "brief-demo-procurement-memory-b",
+  "atoms": 3,
+  "operators": 2,
+  "realizations": 3,
+  "unrealized_targets": 2,
+  "raw_bytes": 26936,
+  "compressed_bytes": 23829,
+  "replacement_cost_usd": 1.52,
+  "portfolio_value_usd": 2.18
+}

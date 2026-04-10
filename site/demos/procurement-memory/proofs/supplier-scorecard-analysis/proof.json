@@ -1,0 +1,17 @@
+{
+  "title": "Supplier Scorecard \u2013 Analyzing Your Suppliers",
+  "public_url": "https://www.youtube.com/watch?v=TdEiJawCIL8",
+  "source": {
+    "title": "Supplier Scorecard \u2013 Analyzing Your Suppliers",
+    "channel": "Procurement Tactics",
+    "duration_seconds": 423
+  },
+  "transcribe": {
+    "avg_confidence": 0.915,
+    "avg_logprob": -0.5,
+    "rtf": 0.0411,
+    "segments_total": 89,
+    "segments_hallucinated": 0
+  },
+  "retained_media": false
+}

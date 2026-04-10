@@ -1,0 +1,17 @@
+{
+  "title": "vendor-renewal-review.pdf",
+  "public_url": "https://www.youtube.com/watch?v=Di8p6fsGXZc",
+  "source": {
+    "title": "vendor-renewal-review.pdf",
+    "channel": "Reference corpus",
+    "duration_seconds": 274
+  },
+  "transcribe": {
+    "avg_confidence": 0.769,
+    "avg_logprob": -0.415,
+    "rtf": 0.0212,
+    "segments_total": 4,
+    "segments_hallucinated": 0
+  },
+  "retained_media": false
+}

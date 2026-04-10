@@ -1,0 +1,20 @@
+{
+  "type": "language-detection",
+  "languages": [
+    {
+      "language": "en",
+      "confidence": 0.9727,
+      "votes": 9
+    },
+    {
+      "language": "es",
+      "confidence": 0.0024,
+      "votes": 4
+    }
+  ],
+  "tags": [
+    "renewal",
+    "pricing",
+    "related"
+  ]
+}

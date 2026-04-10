@@ -1,0 +1,131 @@
+{
+  "pipeline": "full_chain",
+  "version": "1.0",
+  "app": "procurement-memory",
+  "source": {
+    "title": "Follow-up vendor-renewal-review.pdf",
+    "duration_s": 211
+  },
+  "pipeline_wall_s": 53.8,
+  "steps_total": 23,
+  "steps_ok": 23,
+  "steps_failed": 0,
+  "steps": [
+    {
+      "name": "fetch-metadata",
+      "wall_s": 3.19,
+      "exit": 0
+    },
+    {
+      "name": "download-audio",
+      "wall_s": 5.08,
+      "exit": 0
+    },
+    {
+      "name": "media-prep",
+      "wall_s": 1.471,
+      "exit": 0
+    },
+    {
+      "name": "transcribe",
+      "wall_s": 34.22,
+      "exit": 0
+    },
+    {
+      "name": "transcript-clean",
+      "wall_s": 0.078,
+      "exit": 0
+    },
+    {
+      "name": "paragraph",
+      "wall_s": 0.062,
+      "exit": 0
+    },
+    {
+      "name": "brief",
+      "wall_s": 0.07,
+      "exit": 0
+    },
+    {
+      "name": "tag",
+      "wall_s": 0.204,
+      "exit": 0
+    },
+    {
+      "name": "tone",
+      "wall_s": 0.573,
+      "exit": 0
+    },
+    {
+      "name": "embed",
+      "wall_s": 0.198,
+      "exit": 0
+    },
+    {
+      "name": "offer",
+      "wall_s": 0.041,
+      "exit": 0
+    },
+    {
+      "name": "repurpose-tweet",
+      "wall_s": 0.042,
+      "exit": 0
+    },
+    {
+      "name": "repurpose-linkedin",
+      "wall_s": 0.039,
+      "exit": 0
+    },
+    {
+      "name": "repurpose-youtube",
+      "wall_s": 0.044,
+      "exit": 0
+    },
+    {
+      "name": "render",
+      "wall_s": 0.067,
+      "exit": 0
+    },
+    {
+      "name": "hash",
+      "wall_s": 0.016,
+      "exit": 0
+    },
+    {
+      "name": "pack",
+      "wall_s": 0.023,
+      "exit": 0
+    },
+    {
+      "name": "ledger",
+      "wall_s": 0.046,
+      "exit": 0
+    },
+    {
+      "name": "compress",
+      "wall_s": 0.037,
+      "exit": 0
+    },
+    {
+      "name": "stitch",
+      "wall_s": 0.099,
+      "exit": 0
+    },
+    {
+      "name": "meter",
+      "wall_s": 0.023,
+      "exit": 0
+    },
+    {
+      "name": "emit-html",
+      "wall_s": 0.041,
+      "exit": 0
+    },
+    {
+      "name": "index",
+      "wall_s": 0.148,
+      "exit": 0
+    }
+  ],
+  "total_s": 45.81
+}

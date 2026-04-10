@@ -1,0 +1,3 @@
+Procurement memory record captures a renewal deadline, pricing drift against the prior term, and unresolved service-level questions. Best follow-up is to surface this vendor for early negotiation while comparing substitution risk and implementation switching cost.
+
+renewal risk, pricing drift, vendor review

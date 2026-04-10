@@ -1,0 +1,17 @@
+{
+  "title": "Supplier Assessment from Procurement Lexicon",
+  "public_url": "https://www.youtube.com/watch?v=qPiPM0Em3H8",
+  "source": {
+    "title": "Supplier Assessment from Procurement Lexicon",
+    "channel": "Procurement Lexicon",
+    "duration_seconds": 56
+  },
+  "transcribe": {
+    "avg_confidence": 0.8653,
+    "avg_logprob": -0.5,
+    "rtf": 0.0475,
+    "segments_total": 10,
+    "segments_hallucinated": 0
+  },
+  "retained_media": false
+}

@@ -1,0 +1,15 @@
+{
+  "sourceSystem": "BonfyreOffer",
+  "headline": "Local-first proof-backed deliverables",
+  "promise": "Send one messy recording and get back a clean transcript, structured summary, and next steps.",
+  "price": "$5",
+  "priceCents": 511,
+  "pricingFactors": {
+    "base": 5.0,
+    "wordPremium": 0.11,
+    "qualityMult": 1.0
+  },
+  "turnaround": "same day",
+  "wordCount": 22,
+  "sentenceCount": 1
+}

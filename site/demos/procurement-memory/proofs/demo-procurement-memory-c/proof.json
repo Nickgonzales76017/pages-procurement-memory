@@ -1,0 +1,17 @@
+{
+  "title": "Follow-up vendor-renewal-review.pdf",
+  "public_url": "https://www.youtube.com/watch?v=g33O3gD0sU4",
+  "source": {
+    "title": "Follow-up vendor-renewal-review.pdf",
+    "channel": "Reference corpus",
+    "duration_seconds": 211
+  },
+  "transcribe": {
+    "avg_confidence": 0.7934,
+    "avg_logprob": -0.751,
+    "rtf": 0.0208,
+    "segments_total": 3,
+    "segments_hallucinated": 1
+  },
+  "retained_media": false
+}

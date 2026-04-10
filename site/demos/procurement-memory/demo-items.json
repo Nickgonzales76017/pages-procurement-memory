@@ -1,56 +1,110 @@
 [
   {
-    "id": "demo-procurement-memory-a",
-    "file": "vendor-renewal-review.pdf",
-    "time": "Reference corpus",
+    "id": "supplier-assessment",
+    "file": "Supplier Assessment from Procurement Lexicon",
+    "time": "Public origin \u00b7 56s",
     "status": "complete",
-    "brief": "Procurement memory record captures a renewal deadline, pricing drift against the prior term, and unresolved service-level questions. Best follow-up is to surface this vendor for early negotiation while comparing substitution risk and implementation switching cost.",
+    "brief": "Supplier assessment is a systematic evaluation process used in procurement and supply chain  management to gauge the performance, capabilities, and overall suitability of a supplier. For globally recognized procurement and supply chain certifications, please visit www. To explore all the  2,500 plus procurement terminologies, download the procurement lexicon at www. For more such procurement terminologies, please  download the procurement lexicon guide.",
     "tags": [
-      "renewal",
-      "pricing",
-      "sla"
+      "vendor",
+      "procurement",
+      "supplier",
+      "evaluation",
+      "scorecard"
     ],
     "flagged": true,
     "demo": true,
-    "searchSummary": "renewal risk, pricing drift, vendor review",
-    "whyItMatters": "One vendor record becomes part of a searchable procurement memory.",
-    "searchIntro": "One vendor record becomes part of a searchable procurement memory. Search across the reference records to feel that inside the app.",
-    "searchOutputs": []
+    "sourceUrl": "https://www.youtube.com/watch?v=qPiPM0Em3H8",
+    "sourceLabel": "Watch original public video",
+    "sourceTitle": "Supplier Assessment from Procurement Lexicon",
+    "publisher": "Procurement Lexicon",
+    "license": "Public YouTube video processed transiently. Bonfyre retained only derived artifacts.",
+    "sourceCopy": "Source: Procurement Lexicon on YouTube. Bonfyre downloaded, transcribed, and deleted the media. Only the transcript, brief, and proof remain.",
+    "whyItMatters": "Vendor evaluations become institutional memory \u2014 scoring criteria, contract terms, and supplier performance tracked.",
+    "searchSummary": "vendor, procurement, supplier",
+    "searchIntro": "Search across the procurement memory records to see how Bonfyre connects related content from different sources.",
+    "outputs": [
+      "vendor brief",
+      "clean transcript",
+      "proof bundle",
+      "search across vendors"
+    ],
+    "outputNotes": {
+      "vendor brief": "Bonfyre extracted the key points from the source audio into a structured vendor brief.",
+      "clean transcript": "The raw transcript cleaned of filler words, false starts, and artifacts.",
+      "proof bundle": "Full provenance chain: source URL, transcription confidence, processing recipe, and quality flags."
+    },
+    "outputLinks": {
+      "brief": {
+        "href": "demos/procurement-memory/proofs/supplier-assessment/brief.md",
+        "label": "Open brief"
+      },
+      "clean transcript": {
+        "href": "demos/procurement-memory/proofs/supplier-assessment/clean.txt",
+        "label": "Open clean transcript"
+      },
+      "proof bundle": {
+        "href": "demos/procurement-memory/proofs/supplier-assessment/proof.json",
+        "label": "Open proof JSON"
+      }
+    },
+    "searchOutputs": [
+      "search across records"
+    ],
+    "proofPath": "demos/procurement-memory/proofs/supplier-assessment"
   },
   {
-    "id": "demo-procurement-memory-b",
-    "file": "Related vendor-renewal-review.pdf",
-    "time": "Reference corpus",
+    "id": "supplier-scorecard-analysis",
+    "file": "Supplier Scorecard \u2013 Analyzing Your Suppliers",
+    "time": "Public origin \u00b7 423s",
     "status": "complete",
-    "brief": "A second reference record extends the same workflow so in-app search and reuse are visible instead of theoretical.",
+    "brief": "By measuring these metrics, organizations gain insights into how well suppliers are performing  in critical areas. These KPIs encompass factors such as on-time delivery, product quality, pricing, competitive  stiffness, responsiveness to inquiries, and customer service excellence. This evaluation aids in making informed decisions regarding supplier selection, on-going collaboration,  and potential renegotiation. Having consistent criteria promotes fairness and objectivity in the evaluation process.",
     "tags": [
-      "renewal",
-      "pricing",
-      "related"
+      "vendor",
+      "procurement",
+      "supplier",
+      "evaluation",
+      "scorecard"
     ],
     "flagged": false,
     "demo": true,
-    "searchSummary": "related signals, continuity, reuse",
-    "whyItMatters": "One vendor record becomes part of a searchable procurement memory.",
-    "searchIntro": "One vendor record becomes part of a searchable procurement memory. Search across the reference records to feel that inside the app.",
-    "searchOutputs": []
-  },
-  {
-    "id": "demo-procurement-memory-c",
-    "file": "Follow-up vendor-renewal-review.pdf",
-    "time": "Reference corpus",
-    "status": "complete",
-    "brief": "A third reference record shows how this app can connect follow-up work, recurring themes, and downstream use without leaving the demo experience.",
-    "tags": [
-      "renewal",
-      "pricing",
-      "follow-up"
+    "sourceUrl": "https://www.youtube.com/watch?v=TdEiJawCIL8",
+    "sourceLabel": "Watch original public video",
+    "sourceTitle": "Supplier Scorecard \u2013 Analyzing Your Suppliers",
+    "publisher": "Procurement Tactics",
+    "license": "Public YouTube video processed transiently. Bonfyre retained only derived artifacts.",
+    "sourceCopy": "Source: Procurement Tactics on YouTube. Bonfyre downloaded, transcribed, and deleted the media. Only the transcript, brief, and proof remain.",
+    "whyItMatters": "Vendor evaluations become institutional memory \u2014 scoring criteria, contract terms, and supplier performance tracked.",
+    "searchSummary": "vendor, procurement, supplier",
+    "searchIntro": "Search across the procurement memory records to see how Bonfyre connects related content from different sources.",
+    "outputs": [
+      "vendor brief",
+      "clean transcript",
+      "proof bundle",
+      "search across vendors"
     ],
-    "flagged": false,
-    "demo": true,
-    "searchSummary": "follow-up, memory, downstream action",
-    "whyItMatters": "One vendor record becomes part of a searchable procurement memory.",
-    "searchIntro": "One vendor record becomes part of a searchable procurement memory. Search across the reference records to feel that inside the app.",
-    "searchOutputs": []
+    "outputNotes": {
+      "vendor brief": "Bonfyre extracted the key points from the source audio into a structured vendor brief.",
+      "clean transcript": "The raw transcript cleaned of filler words, false starts, and artifacts.",
+      "proof bundle": "Full provenance chain: source URL, transcription confidence, processing recipe, and quality flags."
+    },
+    "outputLinks": {
+      "brief": {
+        "href": "demos/procurement-memory/proofs/supplier-scorecard-analysis/brief.md",
+        "label": "Open brief"
+      },
+      "clean transcript": {
+        "href": "demos/procurement-memory/proofs/supplier-scorecard-analysis/clean.txt",
+        "label": "Open clean transcript"
+      },
+      "proof bundle": {
+        "href": "demos/procurement-memory/proofs/supplier-scorecard-analysis/proof.json",
+        "label": "Open proof JSON"
+      }
+    },
+    "searchOutputs": [
+      "search across records"
+    ],
+    "proofPath": "demos/procurement-memory/proofs/supplier-scorecard-analysis"
   }
 ]
