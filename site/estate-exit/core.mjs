@@ -148,7 +148,7 @@ export function toTypedProposal(s){
  "modeled_exit_cents "+(s.finance.exit??"unpriced")+"\n"+
  "modeled_net_cents "+(m.priced?(m.net??m.noi):"unpriced")+"\n"+
  "recipient_fit "+(f.ready?"economic_candidate":"pending")+"\n"+
- ...EVIDENCE.map(e=>"predicate "+e.id+" "+p.proof[e.id].status+" "+quoted(p.proof[e.id].ref||"unbound")+"\n")+
+ EVIDENCE.map(e=>"predicate "+e.id+" "+p.proof[e.id].status+" "+quoted(p.proof[e.id].ref||"unbound")+"\n").join("")+
  "title_opinion none\nseller_signature_authority none\nescrow none\n"+
  "cannot_infer parcel_observation_is_not_title_or_closed_sale\n";
 }
