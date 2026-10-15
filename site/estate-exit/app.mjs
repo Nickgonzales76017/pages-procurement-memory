@@ -67,7 +67,7 @@ function renderVerify(){
    '</select></label><label>Exact evidence reference<input data-proof="'+e.id+'" data-key="ref" maxlength="500" placeholder="Source URL, case or owner coordinate" value="'+esc(proof.ref)+'"></label></div></div>';
  }).join("");
  $("verificationResult").innerHTML='<strong>'+esc(plan.status)+' · '+plan.covered.size+
-   '/'+EVIDENCE.length+' native-type proof opportunities</strong><p>'+
+   '/'+plan.requiredCount+' candidate method coverage</strong><p>'+
    'Modeled verification route '+money(plan.cost)+' of '+money(state.budget)+'. '+
    'An admissible method is not a certified finding, actual provider quote, accepted title, or visit reservation.</p>'+
    (plan.unresolved.length?'<p class="error">Uncovered candidate routes: '+esc(plan.unresolved.map(x=>x.label).join("; "))+'</p>':"");
@@ -95,12 +95,11 @@ function preview(){
   "Annual modeled NOI "+money(m.noi)+" · indicated cap valuation "+money(m.indicated):
   "Modeled net "+money(m.net)+" · maximum allowable offer "+money(m.maxOffer):
   "Exit price and acquisition cost unresolved";
- $("paperVerify").textContent=v.covered.size+"/"+freshEvidenceCount()+
+ $("paperVerify").textContent=v.covered.size+"/"+v.requiredCount+
    " candidate proof classes · "+money(v.cost)+" modeled verification";
  $("paperFit").textContent=f.reason;
  $("paperAuthority").textContent="No title opinion, signing authority, escrow deposit or binding purchase exists. Local review fields are not legal findings.";
 }
-function freshEvidenceCount(){return EVIDENCE.length}
 function render(){guarded(()=>{renderObserve();renderUnderwrite();renderVerify();renderMatch();renderOffer();preview();drawProgress()});}
 function touch(){state.prepared=false;$("savedState").textContent="Unsaved review";preview();drawProgress();}
 document.addEventListener("change",e=>{
