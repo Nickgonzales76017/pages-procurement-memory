@@ -1,6 +1,6 @@
 import test from "node:test";
 import assert from "node:assert/strict";
-import {fresh,cents,money,eligible,routePrice,optimize,parseTsv,validSource,toMarkdown,toYaff} from "../site/brief-studio/core.mjs";
+import {fresh,cents,money,eligible,routePrice,optimize,parseTsv,validSource,toMarkdown,toYaff,METHODS,checkOpportunity} from "../site/brief-studio/core.mjs";
 
 test("working domain scenarios remain distinct and bounded",()=>{
  const itad=fresh("itad"),estate=fresh("property"),supplier=fresh("supplier"),civic=fresh("civic");
@@ -13,6 +13,14 @@ test("working domain scenarios remain distinct and bounded",()=>{
  assert.equal(estate.opportunities[0].needs.find(x=>x.id==="title").kind,"title");
  assert.equal(supplier.opportunities[0].needs.find(x=>x.id==="capacity").kind,"capacity");
  assert.throws(()=>fresh("unknown"));
+});
+test("supplier partner verification is a registered method and validates its route",()=>{
+ const supplier=fresh("supplier").opportunities[0];
+ assert.ok(METHODS.some(([id])=>id==="partner"));
+ assert.ok(supplier.offers.some(route=>route.method==="partner"));
+ assert.doesNotThrow(()=>checkOpportunity(supplier));
+ const plan=optimize(supplier,cents(500),"exploratory");
+ assert.ok(plan.selected.every(route=>METHODS.some(([id])=>id===route.method)));
 });
 test("only a qualified specialist route can propose title coverage",()=>{
  assert.equal(eligible("owner","title"),false);
