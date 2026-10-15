@@ -73,7 +73,7 @@ export function calculate(s,kind=s.strategy){
 }
 export function verify(s){
  const template=fresh("property"),base=template.opportunities[0];
- return optimize(base,s.budget,s.verificationMode);
+ return {...optimize(base,s.budget,s.verificationMode),requiredCount:base.needs.length};
 }
 export function review(s){
  const p=selected(s),math=calculate(s);
@@ -84,7 +84,7 @@ export function review(s){
  {id:"underwrite",title:"Compare exits",done:math.priced},
  {id:"verify",title:"Resolve exceptions",done:EVIDENCE.every(e=>p.proof[e.id].status==="reviewed")},
  {id:"match",title:"Investor fit",done:math.priced&&s.investor.limit!=null},
- {id:"offer",title:"Reviewed offer",done:s.prepared&&title&&authority}
+ {id:"offer",title:"Offer packet",done:s.prepared}
  ];
 }
 export function fit(s){
