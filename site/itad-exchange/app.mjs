@@ -65,7 +65,12 @@ function renderEconomics(){
  $("economicReadout").innerHTML=a.priced?
  '<strong>Modeled gross recovery '+money(a.recovery)+'</strong><p>Proposed purchase '+money(a.buyTotal)+' + handling '+money(a.testing)+' + freight '+money(a.freight)+' + reserve '+money(a.reserve)+' = '+money(a.totalCost)+'</p>'+
  '<p class="'+(a.meetsTarget?"success":"error")+'">Modeled net '+money(a.net)+' · '+a.margin.toFixed(1)+'% recovery margin. Maximum buy per unit at '+r.targetMarginPct+'% target: '+money(a.maxUnit)+'.</p>':
- '<strong>Not priced</strong><p>Enter modeled recovery for every manifest line and a proposed buy-per-unit amount. A blank estimate is never silently treated as a zero-dollar offer.</p>';
+ '<strong>Not priced</strong><p>'+
+ (a.unknown?String(a.unknown)+" units still need modeled recovery values. ":"")+
+ (r.buyPerUnit===null?"A proposed buying number per unit is also missing. ":"")+
+ 'Missing values are never converted to zero-dollar offers.</p><button type="button" class="primary" data-price-manifest>Enter values in the inventory table →</button>';
+ const shortcut=$("economicReadout").querySelector("[data-price-manifest]");
+ if(shortcut)shortcut.addEventListener("click",()=>show("manifest"));
 }
 function renderBuyer(){
  $("recipient").value=state.recipient;$("buyerRequirements").value=state.buyerRequirements;
@@ -77,7 +82,7 @@ function paper(){
  $("paperTitle").textContent=lot.title;
  $("paperAudience").textContent=state.recipient;
  $("paperMaterial").textContent=lot.claim;
- $("paperSource").textContent=r.source||"Original source URL not supplied";
+ $("paperSource").textContent=r.source?"Retained privately for operator review":"Original seller source still required";
  $("paperNumbers").textContent=a.priced?
  money(a.recovery)+" modeled recovery · "+money(a.net)+" net after proposed acquisition, costs and reserve · "+a.margin.toFixed(1)+"%":
  "Economics unpriced — buyer number and recovery assumptions required";
