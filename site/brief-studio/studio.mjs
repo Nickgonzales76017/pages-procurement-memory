@@ -139,6 +139,11 @@ async function safe(fn){try{await fn();}catch(error){notice(error.message||"Acti
 function collectField(id,value){
  const o=op();
  if(["title","subject","source","assertion"].includes(id))o[id]=value;
+ if(id==="source"){
+  const valid=value&&validSource(value);
+  $("openSource").href=valid?value:"#";$("openSource").setAttribute("aria-disabled",valid?"false":"true");
+  $("identityChip").textContent=valid?"Original link supplied":"Illustrative / unbound";
+ }
  else if(["recipient","briefHeading","notes","decision"].includes(id))state[id]=value;
  else if(id==="budget")state.budget=cents(value);
  else if(id==="planMode")state.mode=value;
@@ -222,7 +227,7 @@ async function openIncomingCivicSource(){
  const source=(p.get("source")||"").slice(0,420);
  const title=(p.get("title")||"Dallas Council source record").slice(0,160);
  const assertion=(p.get("assertion")||"A civic source record was selected for review.").slice(0,1200);
- if(!/^\\d{2}-\\d{4}[A-Z]$/.test(file))throw Error("Council handoff requires an exact official file number.");
+ if(!/^\d{2}-\d{4}[A-Z]$/.test(file))throw Error("Council handoff requires an exact official file number.");
  if(!validSource(source)||!["cityofdallas.legistar.com","dallastx.new.swagit.com"].includes(new URL(source).hostname))
   throw Error("Council handoff refused: official source URL required.");
  await switchProfile("civic");
