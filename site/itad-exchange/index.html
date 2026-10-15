@@ -1,0 +1,88 @@
+<!doctype html>
+<html lang="en">
+<head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="color-scheme" content="dark"><meta name="description" content="Aurekai ITAD acquisition room: real manifest comparisons, constrained verification, acquisition economics and reviewed buyer inquiry without inventing a transaction.">
+<title>ITAD Acquisition & Disposition · Aurekai</title>
+<link rel="stylesheet" href="../journey-kit/room.css"><script type="module" src="./app.mjs"></script>
+<style>.computer{stroke:#9cc6a3;stroke-width:2;fill:#23412f}.computerScreen{fill:#b8d8b1}.computerFrame{fill:#1b382a;stroke:#b8d8b1;stroke-width:1}.artGrid{stroke:#5c7960;stroke-width:1;opacity:.5}.paper .plain{max-height:300px;overflow:auto}.ref button{background:none;color:#c5e2be;border:0;text-decoration:underline}.manifestPrompt{background:#253c2a;border-left:3px solid #ddba87;padding:13px;font-size:12px;color:#e6d3b6}#sourceLink[hidden]{display:none}</style>
+</head><body>
+<div class="shell">
+ <nav class="top"><a class="brand" href="../"><mark>A</mark>AUREKAI / WORK</a>
+ <div class="topLinks"><a href="../brief-studio/">Acquisition Brief Studio</a><a href="https://aurekai.work/">WORK</a><a href="https://aurekai-work-samples.pages.dev/">Work Samples</a></div></nav>
+ <header class="hero">
+  <div><div class="eyebrow">Operating room / ITAD · preparation and buyer decisions</div>
+    <h1>From an off-market lot<br>to a <em>defensible buying number.</em></h1>
+    <p>Compare seller-described equipment, reconcile a real inventory, model recovery and landed costs, choose meaningful verification, and prepare a buyer's next decision. No fictional purchase or inspection receipts.</p>
+    <div class="heroActions"><a class="primary" href="#source" onclick="document.querySelector('[data-chapter=source]').click()">Open equipment room ↗</a><a class="secondary" href="../brief-studio/?profile=itad">Continue in Brief Studio ↗</a></div>
+  </div>
+  <div class="heroArt">
+  <svg viewBox="0 0 460 270" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+    <path class="artGrid" d="M15 220H445M15 190H445M15 160H445M15 130H445M15 100H445M15 70H445M15 40H445M60 20V250M130 20V250M200 20V250M270 20V250M340 20V250M410 20V250"/>
+    <g transform="translate(46,44)"><rect width="104" height="130" rx="10" class="computer"/><rect x="13" y="14" width="78" height="92" rx="5" class="computerFrame"/><rect x="25" y="28" width="53" height="6" rx="2" class="computerScreen"/><circle cx="52" cy="118" r="4" class="computerScreen"/><text x="52" y="155" fill="#d9e5ca" font-size="12" text-anchor="middle">DESKTOP</text></g>
+    <g transform="translate(169,76)"><rect width="119" height="90" rx="7" class="computer"/><rect x="9" y="7" width="102" height="69" rx="3" class="computerFrame"/><path d="M-9 84H128L140 101H-20Z" class="computerScreen"/><text x="58" y="130" fill="#d9e5ca" font-size="12" text-anchor="middle">LAPTOP</text></g>
+    <g transform="translate(314,55)"><rect width="112" height="91" rx="5" class="computer"/><rect x="11" y="10" width="90" height="69" class="computerFrame"/><path d="M56 91V120M22 121H90" stroke="#b9d6b0" stroke-width="5"/><text x="56" y="144" fill="#d9e5ca" font-size="12" text-anchor="middle">ALL-IN-ONE</text></g>
+    <path d="M15 232H445" stroke="#deb98a" stroke-width="2"/><text x="20" y="250" fill="#c6dda8" font-size="11">LOT → MANIFEST → PROOF → PRICE → BUYER</text>
+  </svg><span class="artCaption">Quantity claims are not serial inventory or guaranteed availability.</span></div>
+ </header>
+ <section class="introStrip"><p>Three retained illustrative opportunity descriptions are already present in Procurement Memory: 35 HP desktops in Houston, 120 mixed laptops in Virginia, and eight Dell all-in-ones in Central Texas. The original sellers, their rights, dates, images and availability have not been independently established here.</p><span class="sourceTag">Source status / seller-described</span></section>
+ <nav class="processRail" id="process" aria-label="Equipment acquisition process"></nav>
+ <div class="layout"><main>
+  <section class="scene surface active" id="source" data-scene="source">
+   <div class="surfaceHead"><div><div class="hint">01 / SELECT AN ACTUAL OPPORTUNITY</div><h2>Choose the lot worth investigating.</h2></div><span class="pill warn">SOURCE NOT VERIFIED</span></div>
+   <div id="lots" class="choices"></div><div class="divider"></div>
+   <h3>Seller's description</h3><p id="lotAssertion"></p><p class="ref">Retained coordinate: <span id="lotIdentity"></span></p>
+   <div class="fieldGrid"><label class="full">Original public listing or permitted source URL <input type="url" id="sourceInput" placeholder="https://original.example/listing"></label></div>
+   <a id="sourceLink" target="_blank" rel="noopener noreferrer" href="#" hidden>Inspect this source ↗</a>
+   <div class="manifestPrompt">Seller-reported count: <strong id="sellerCount">—</strong>. Enter source and item-level manifest below before treating this as inspectable stock.</div>
+   <div class="buttonRow"><button class="primary" onclick="document.querySelector('[data-chapter=manifest]').click()">Inspect inventory →</button></div>
+  </section>
+  <section class="scene surface" id="manifest" data-scene="manifest">
+    <div class="hint">02 / INVENTORY RECONCILIATION</div><h2>Work with line items, not a listing headline.</h2>
+    <p>Correct seller quantities, group exact models, record condition, and add modeled recoverable value. Missing serials, BIOS results and power tests remain open even when totals match.</p>
+    <div id="manifestRows" class="collection"></div><div class="buttonRow"><button id="addManifest">Add a manifest line +</button></div>
+    <div class="manifestPrompt">Optional tab-separated manifest import with exact columns: <code>model · qty · grade · recovery_per_unit</code>. Unique models; accepted grades: unknown, working, untested, parts. Existing lines are replaced only after the whole import validates.</div>
+    <div class="fieldGrid"><label class="full">Replace local manifest with a verified-format TSV <input id="manifestFile" type="file" accept=".tsv,text/tab-separated-values,text/plain"></label></div>
+    <p id="manifestResult" class="result"></p>
+  </section>
+  <section class="scene surface" id="verification" data-scene="verification">
+   <div class="hint">03 / PROOF BEFORE PROCUREMENT</div><h2>Who could actually answer each question?</h2>
+   <p>Compare candidate desk checks, remote demonstrations, ownership review and bundled field visits. Shared trips are costed once by exact provider/visit identity. This does not book work or accept evidence.</p>
+   <div class="fieldGrid"><label>Verification ceiling ($)<input id="budgetInput" inputmode="decimal"></label><label>Route posture <select id="modeInput"><option value="exploratory">Explore estimated routes</option><option value="documented">Only documented & ready routes</option></select></label></div>
+   <div class="collection" id="needRows"></div><div class="divider"></div><h3>Lowest admissible candidate route</h3>
+   <div id="coverage" class="result"></div><div id="proofRoutes" class="collection"></div>
+  </section>
+  <section class="scene surface" id="economics" data-scene="economics">
+   <div class="hint">04 / BUYING NUMBER</div><h2>Model whether the lot can pay for itself.</h2>
+   <p>These are your entered assumptions—not an external price feed. The model reports gross modeled recovery, acquisition cash, test costs, freight, reserve, net and the maximum buy-per-unit required by your margin target.</p>
+   <div class="fieldGrid triple">
+     <label>Proposed buy/unit ($)<input id="buyPerUnit" inputmode="decimal" placeholder="Awaiting buyer number"></label>
+     <label>Testing/handling per unit ($)<input id="testingPerUnit" inputmode="decimal"></label>
+     <label>Estimated freight total ($)<input id="freight" inputmode="decimal"></label>
+     <label>Reserve of modeled gross (%)<input id="reservePct" type="number" min="0" max="85"></label>
+     <label>Required recovery margin (%)<input id="targetMarginPct" type="number" min="0" max="85"></label>
+   </div>
+   <div id="economicReadout" class="result"></div>
+   <div class="warning">No purchase offer, booking, sell-through, disposal right, transfer authorization, or acceptance is inferred from favorable arithmetic.</div>
+  </section>
+  <section class="scene surface" id="buyer" data-scene="buyer">
+   <div class="hint">05 / MAKE THE NEXT CONVERSATION SHORTER</div><h2>Buyer decision and custody questions.</h2>
+   <p>Prepare the shortlist decision an ITAD buyer actually needs: which lot, indicative buying number, pickup/freight feasibility, model/serial/condition gaps, and who must authorize transfer.</p>
+   <div class="fieldGrid"><label class="full">Recipient or buying team<input id="recipient" maxlength="100"></label>
+   <label class="full">Questions the buyer must answer<textarea id="buyerRequirements" rows="4" maxlength="950"></textarea></label>
+   <label class="full">Reviewer notes / next actions<textarea id="buyerNotes" rows="3" maxlength="950"></textarea></label></div>
+   <div class="buttonRow"><button id="prepareBuyer" class="primary">Prepare local buyer inquiry</button></div>
+   <p id="packetState" class="statusLine"></p><p class="warning">A prepared inquiry is not sent. Real collection, custody and payment remain blocked by separate owner authorization and evidence.</p>
+  </section>
+  <section class="surface">
+    <div class="surfaceHead"><div><div class="hint">RETAIN THE REVIEW</div><h3>Save locally or hand over typed material.</h3></div><span id="savedState" class="hint">Unsaved draft</span></div>
+    <div class="buttonRow"><button id="saveDraft" class="primary">Save this room</button><button id="exportBrief">Download buyer brief (.md)</button><button id="exportYaff">Export typed proposal (.yaff)</button></div>
+    <p class="statusLine" id="message" aria-live="polite"></p><p class="ref">Local drafts are revisioned in IndexedDB. No buyer, provider, CRM, WorkGraph or payment owner is called by this page.</p>
+  </section>
+ </main><aside class="paperWrap" aria-label="Current buyer-facing preview">
+  <section class="paper"><div class="eyebrow">Live recipient preview · editable buyer decision</div><h2 id="paperTitle">Equipment inquiry</h2>
+   <dl><dt>For</dt><dd id="paperAudience"></dd><dt>Source coordinate</dt><dd id="paperSource"></dd></dl><h3>What the seller says</h3><p id="paperMaterial"></p><h3>Underwriting</h3><p id="paperNumbers"></p><h3>Proposed verification</h3><p id="paperProof"></p><h3>Still unresolved</h3><p class="critical" id="paperOpen"></p><hr><p id="paperProposal"></p>
+   <footer>Planning and draft review only. Source claims, buyer assent, authority and custody require separate verification.</footer>
+  </section>
+ </aside></div>
+ <footer class="footer"><span>Aurekai · ITAD Acquisition & Disposition / prospective opportunity analysis</span><span>No inspected goods, accepted price, supplier mandate or dispatched work is represented by this app.</span></footer>
+</div></body></html>
