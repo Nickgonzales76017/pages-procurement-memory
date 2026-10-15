@@ -9,7 +9,7 @@ Two Aurekai experiences for teams that make buying, supplier and acquisition dec
 
 Use this workspace to turn an opportunity into a concise, reviewable buyer brief.
 
-1. Choose **Equipment acquisition**, **Property acquisition**, or **Supplier procurement**. The starting scenarios use illustrative source claims rather than confirmed inventory or a real property listing.
+1. Choose **Equipment acquisition**, **Property acquisition**, **Supplier procurement**, or **Civic source review**. The starting scenarios use illustrative source claims rather than confirmed inventory or a real property listing.
 2. Select an opportunity, change the recipient and add the information your team has received. Link the original source where possible.
 3. Review the decision-critical questions. You can add new checks, mark a source as supplied or record a local review. Those states do not claim independent verification.
 4. Compare possible verification methods and set a budget. A remote walkthrough, a field technician and a qualified title specialist answer different questions. Two tasks done by the same provider on one trip can share travel cost.
@@ -18,7 +18,7 @@ Use this workspace to turn an opportunity into a concise, reviewable buyer brief
 
 The studio supports up to 16 requirements and 15 route options for each opportunity. You can bring up to 100 opportunities in one TSV import. The columns are `title`, `subject`, `source` and `assertion`.
 
-The included examples show an equipment buyer considering unverified desktops and laptops, a Dallas property research scenario, and a proposed supplier. They are not offers from the named organizations, accepted quotes, verified title findings or instructions to contact anyone.
+The included examples show an equipment buyer considering unverified desktops and laptops, a Dallas property research scenario, a proposed supplier, and a Dallas Council source review. Select an official file in [Council Media](https://nickgonzales76017.github.io/pages-town-box/civic-council/) and use **Continue this file in Brief Studio** to bring its file number, original agenda URL, indexed chapter reference, observation receipt and saved reviewer note into a new civic brief. This is a review handoff and does not infer the council voted, that reuse rights exist, or that provider work is authorized. They are not offers from the named organizations, accepted quotes, verified title findings or instructions to contact anyone.
 
 ### What does it cost to verify?
 
