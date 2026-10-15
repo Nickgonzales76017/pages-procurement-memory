@@ -1,0 +1,28 @@
+name: Acquisition Brief Studio checks
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'site/brief-studio/**'
+      - 'tests/brief-studio.test.mjs'
+      - '.github/workflows/brief-studio-checks.yml'
+  pull_request:
+    paths:
+      - 'site/brief-studio/**'
+      - 'tests/brief-studio.test.mjs'
+permissions:
+  contents: read
+jobs:
+  studio:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Check native-format browser modules
+        run: |
+          node --check site/brief-studio/core.mjs
+          node --check site/brief-studio/studio.mjs
+      - name: Run decision and verification contracts
+        run: node --test tests/brief-studio.test.mjs
