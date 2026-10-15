@@ -127,11 +127,11 @@ document.addEventListener("change",e=>{
 });
 for(const key of ["parcel","address","owner","width","depth","notes","source"])$(key+"Input").dataset.field=key;
 for(const key of Object.keys(state.finance))$(key+"Input").dataset.finance=key;
-for(const key of ["label","limit","minProfit","notes"])$("investor"+key[0].toUpperCase()+key.slice(1)).dataset.investor=key;
+for(const key of ["label","limit","minProfit","notes"])$("investor"+(key==="label"?"Name":key[0].toUpperCase()+key.slice(1))).dataset.investor=key;
 $("budgetInput").dataset.field="budget";$("verificationModeInput").dataset.field="verificationMode";$("recipient").dataset.field="recipient";
 $("parcelImport").addEventListener("change",async e=>{
  const f=e.target.files[0];if(!f)return;
- try{const parsed=parseParcels(await f.text());state.parcels.push(...parsed);state.selected=parsed[0].id;touch();render();
+ try{const parsed=parseParcels(await f.text());for(const item of parsed){if(state.parcels.some(p=>p.parcel&&p.parcel===item.parcel))throw Error("Parcel identity is already present in this workspace: "+item.parcel);}parsed.forEach((item,i)=>item.id="parcel-"+(state.parcels.length+i));state.parcels.push(...parsed);state.selected=parsed[0].id;touch();render();
   notify("Added "+parsed.length+" bounded parcel candidates. Nothing was written to official assessor or title records.");}
  catch(error){notify(error.message,true)}finally{e.target.value=""}
 });
