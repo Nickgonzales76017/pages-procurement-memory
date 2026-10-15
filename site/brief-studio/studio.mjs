@@ -243,6 +243,9 @@ async function openIncomingCivicSource(){
    existing.needs.push({id:"requested-"+kind,kind,label:"Additional "+kind+" review",weight:3,source:"Council Media reviewer request",status:"missing"});
   }
   state.opportunities.push(existing);
+  state.briefHeading=title;
+  const reviewerNote=String(p.get("note")||"").trim().slice(0,900);
+  if(reviewerNote)state.notes="Council reviewer note: "+reviewerNote+"\nOriginal source and receipt require independent review before any operational decision.";
  }
  state.current=id;
  if(!state.notes)state.notes="Imported from Dallas Council Media. Compare official sources and review the outcome before publication.";
