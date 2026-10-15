@@ -121,6 +121,22 @@ export function move(prior,actor,action,data={}){
  const roles=[w.requisitioner,w.buyerReviewer,w.financeReviewer,w.receivingActor];
  if(!roles.includes(actor))throw Error("Unknown purchasing role.");
  const offer=w.offers.find(o=>o.id===data.offerId);
+ if(action==="add-quote"){
+  if(actor!==w.requisitioner||w.order||w.offers.length>=20)throw Error("Only the requisitioner may add an uncommitted supplier quote.");
+  const id=String(data.id||"");
+  if(!ref(id)||w.offers.some(o=>o.id===id)||!sourceOk(data.source))throw Error("Unique supplier identity and exact original quotation source required.");
+  const leadDays=Number(data.leadDays),freight=cents(data.freight);
+  if(!Number.isSafeInteger(leadDays)||leadDays<1||leadDays>365)throw Error("Supplier lead time must be 1–365 days.");
+  const unit=Number(data.unit);
+  if(!Number.isFinite(unit)||unit<0)throw Error("Valid unit estimate required.");
+  const copied=w.lines.map((l,i)=>({
+   id:l.id,item:l.item,quantity:l.quantity,unit:i===0?cents(unit):l.unit,source:data.source
+  }));
+  w.offers.push(supplier(id,String(data.name||"").slice(0,120),leadDays,freight,
+   String(data.terms||"Unconfirmed").slice(0,160),copied,data.source,true));
+  w.truth="local_requisition";validate(w);
+  return append(w,actor,action,id,"New supplier source offered, not accepted.");
+ }
  if(action==="counter"){
   if(actor!==w.requisitioner||!offer||w.order)throw Error("Negotiation must occur before award and by requisition owner.");
   const n=cents(data.total),note=String(data.note||"").trim();
