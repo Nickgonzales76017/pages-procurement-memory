@@ -1,0 +1,77 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="color-scheme" content="dark"><meta name="description" content="Aurekai Procurement Room: source-backed supplier comparisons, negotiation, authorized purchase review and original invoice/receiving match.">
+<link rel="canonical" href="https://nickgonzales76017.github.io/pages-procurement-memory/deal-room/">
+<title>Procurement & Negotiation Room · Aurekai</title><link rel="stylesheet" href="./studio.css"><script type="module" src="./studio.mjs"></script></head><body>
+<a class="skip" href="#work">Skip to procurement room</a>
+<header class="bar"><a class="brand" href="../"><span class="mark">A·</span><span>AUREKAI<small>PROCUREMENT / SOURCED TERMS</small></span></a>
+<nav aria-label="Related Aurekai work"><a href="../">Procurement Memory</a><a href="../brief-studio/">Acquisition Brief Studio</a><a href="https://nickgonzales76017.github.io/bonfyre/#experiences">All work ↗</a></nav><span class="local">Local governed rehearsal</span></header>
+<main id="work">
+<section class="intro"><div class="eyebrow">REQUIREMENT → SUPPLIER → ASSENT → RECEIVING → INVOICE MATCH</div><div class="intro-grid"><div><h1>Better terms.<br><em>A traceable decision.</em></h1>
+<p>Compare complete supplier offers, see exactly why a cheaper price may be unsuitable, keep negotiations distinct from accepted quotes, and trace a proposed purchase through independent approval and a three-way receiving match.</p></div>
+<div class="intro-actions"><button class="subtle" id="reset" type="button">Reset sourced example</button><button id="save" class="primary" type="button">Save room</button><button id="export" class="secondary" type="button">Export buyer decision ↓</button></div></div>
+</section>
+<section class="statusbar">
+<div><span>REQUISITION</span><strong id="requisition">—</strong></div><div><span>BUYER</span><strong id="buyer">—</strong></div>
+<div><span>ACT AS</span><select id="actor" aria-label="Simulated procurement actor"><option value="mara">Mara · requisitioner</option><option value="devon">Devon · procurement reviewer</option><option value="quinn">Quinn · finance reviewer</option><option value="sam">Sam · receiving operator</option></select></div>
+<div><span>ORDER PROJECTION</span><strong id="orderStatus">Not prepared</strong></div>
+</section>
+<section class="metrics">
+<div><span>APPROVED BUDGET LIMIT</span><strong id="budgetMetric">—</strong></div>
+<div><span>LOWEST QUOTED TOTAL</span><strong id="lowestMetric">—</strong></div>
+<div><span>DOCUMENTED CAPACITY</span><strong id="capacityMetric">—</strong></div>
+<div><span>REVIEW/RECEIPT GAPS</span><strong id="gapMetric">—</strong></div>
+</section>
+<div class="layout">
+<div class="work">
+<section class="panel">
+<div class="heading"><div><span class="eyebrow">01 / EXACT REQUIREMENT</span><h2>What are we buying?</h2></div><span id="truth" class="pill">Fictional suppliers</span></div>
+<h3 id="requirementTitle">Community center media equipment refresh</h3>
+<p id="purpose" class="description"></p>
+<div id="requestedLines" class="requested"></div>
+<p class="source-note">Original request <span id="sourceRef"></span>. Quantity, source and delivery timing constrain the supplier comparison.</p>
+</section>
+<section class="panel">
+<div class="heading"><div><span class="eyebrow">02 / SUPPLIER FRONTIER</span><h2>Choose terms, not just price.</h2></div><span class="headnote" id="offersCount">3 suppliers</span></div>
+<div id="offers" class="offers"></div>
+<details class="add"><summary>+ Add a source-linked supplier quotation</summary><form id="newQuote" class="form two">
+<label>Supplier ID<input name="id" required pattern="[a-z][a-z0-9-]{2,79}" placeholder="e.g. local-integrator"></label>
+<label>Supplier name<input name="name" required maxlength="120"></label>
+<label>First-line unit price USD<input name="unit" type="number" min="0" step=".01" required></label>
+<label>Freight / delivery USD<input name="freight" type="number" min="0" step=".01" required></label>
+<label>Lead time, days<input name="leadDays" type="number" min="1" max="365" required></label>
+<label>Terms<input name="terms" maxlength="160" placeholder="e.g. Net 30"></label>
+<label class="full">Exact supplier quote URL<input name="source" required maxlength="700" placeholder="https://…"></label>
+<button class="primary" type="submit">Add unreviewed supplier</button></form></details>
+</section>
+<section class="panel">
+<div class="heading"><div><span class="eyebrow">03 / NEGOTIATION</span><h2>Hold every proposed change accountable.</h2></div></div>
+<p class="hint">A counterproposal is your intent, not a supplier acceptance. To change a quoted amount, obtain a new source and reopen its independent review.</p>
+<form id="counter" class="form"><label>Internal counterproposal amount USD<input type="number" name="total" min=".01" step=".01" required></label>
+<label>Rationale<textarea name="note" required rows="3" maxlength="500" placeholder="Which specific scope/price change would make this commercially viable?"></textarea></label>
+<button type="submit" class="secondary">Record counterproposal</button></form>
+<div id="negotiations" class="negotiations"></div>
+</section>
+<section class="panel">
+<div class="heading"><div><span class="eyebrow">04 / EXECUTION CONSEQUENCE</span><h2>Only the approved order moves forward.</h2></div></div>
+<div class="steps"><div><span>01</span><strong>Technical review</strong><small id="techState">Not reviewed</small><button id="tech" class="secondary" type="button">Review spec</button></div>
+<div><span>02</span><strong>Finance decision</strong><small id="financeState">Not reviewed</small><button id="finance" class="secondary" type="button">Review budget</button></div>
+<div><span>03</span><strong>Purchase proposal</strong><small id="poState">Not prepared</small><button id="prepare" class="primary" type="button">Prepare PO draft</button></div></div>
+<div class="receiving" id="receiving">
+<h3>Three-way receiving and invoice match</h3><p>Record exact quantities from a packing slip; compare the supplier invoice with the locally approved order. A match is not a payment.</p>
+<form id="receiptForm" class="form two"><div id="receivedRows" class="full"></div>
+<label class="full">Original receiving source URL<input name="source" maxlength="700" required placeholder="https://…"></label>
+<button class="secondary" type="submit">Record receiving quantities</button></form>
+<form id="invoiceForm" class="form two"><label>Supplier invoice USD<input name="amount" type="number" min="0" step=".01" required></label><label>Invoice original source<input name="source" maxlength="700" required placeholder="https://…"></label>
+<button class="secondary" type="submit">Compare invoice</button></form>
+<div id="matchResult" class="match-result" aria-live="polite"></div>
+<button id="closeMatch" class="primary" type="button">Record local three-way match</button></div>
+</section>
+</div>
+<aside class="sidebar">
+<section class="preview"><div class="eyebrow">LIVE / BUYER DECISION PREVIEW</div><div class="paper"><span class="paper-tag">SUPPLIER & CONTRACT REVIEW</span><h2 id="paperTitle">—</h2><div id="paper"></div><footer>No supplier contacted / no real order issued</footer></div>
+<button id="typed" class="secondary" type="button">Export typed procurement handoff ↓</button></section>
+<section class="audit-panel"><div class="eyebrow">LOCAL / REVIEW HISTORY</div><h3>Who approved what?</h3><div id="audit" class="audit"></div><p>This browser has no commercial settlement rail, external vendor authority or live ERPNext controller. All quotes shown initially are fictional.</p></section>
+</aside>
+</div>
+</main><footer class="foot"><span>AUREKAI / PROCUREMENT MEMORY</span><span>Original sources remain distinct from price estimates, offer acceptance, receiving and cash</span><a href="../brief-studio/">Return to Brief Studio ↗</a></footer>
+<div id="toast" class="toast" role="status" aria-live="polite"></div></body></html>
