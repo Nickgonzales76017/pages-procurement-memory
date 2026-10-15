@@ -1,7 +1,7 @@
 import test from "node:test";
 import assert from "node:assert/strict";
 import { initial as itad, lots, parseManifest, assess, verify, workflow, buyerBrief, buyerYaff } from "../site/itad-exchange/core.mjs";
-import { initial as estate, EVIDENCE, parseParcels, calculate, review, fit, brief, toTypedProposal } from "../site/estate-exit/core.mjs";
+import { initial as estate, EVIDENCE, parseParcels, calculate, review, fit, brief, toTypedProposal, verify as verifyEstate } from "../site/estate-exit/core.mjs";
 
 test("ITAD: all three distinct seller-described lots preserve their unverified source identity",()=>{
  const s=itad();assert.equal(lots.length,3);
@@ -49,6 +49,24 @@ test("ITAD: batch manifest import refuses duplicate models, unsupported grades a
  assert.throws(()=>parseManifest(header+"Unit\t3\tworking\tinfinite\n"),/amount/);
 });
 
+test("ITAD: buyer-facing inquiry never leaks the operator's seller source",()=>{
+ const s=itad(),source="https://seller.example.invalid/private-sourcing?lot=35";
+ s.records[s.selected].source=source;
+ const exported=buyerBrief(s);
+ assert.ok(exported.includes("Held privately for operator verification"));
+ assert.ok(!exported.includes(source));
+ assert.ok(buyerYaff(s).includes(source),"the distinct internal YAFF handoff retains the exact source coordinate");
+});
+test("Fleming: the route solver's four questions stay distinct from six local evidence reviews",()=>{
+ const s=estate(),solution=verifyEstate(s);
+ assert.equal(solution.requiredCount,4);
+ assert.equal(EVIDENCE.length,6);
+ assert.equal(review(s).at(-1).done,false);
+ s.prepared=true;
+ assert.equal(review(s).at(-1).title,"Offer packet");
+ assert.equal(review(s).at(-1).done,true);
+ assert.match(brief(s),/No binding offer/);
+});
 test("Fleming: unassigned parcel is never manufactured as a title or priced exit",()=>{
  const s=estate();assert.equal(s.parcels.length,1);
  assert.equal(s.parcels[0].parcel,"");
