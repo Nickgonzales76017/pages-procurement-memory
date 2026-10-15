@@ -11,7 +11,7 @@ export const KINDS=[
 ["consent","Consent"],["provenance","Source provenance"],["hardware-boot","Boot test"]
 ];
 export const METHODS=[
-["desk","Desk review"],["owner","Owner documents"],["remote-live","Remote walkthrough"],
+["desk","Desk review"],["owner","Owner documents"],["partner","Partner confirmation"],["remote-live","Remote walkthrough"],
 ["partner","Partner check"],["field","On-site inspection"],
 ["licensed","Qualified specialist"],["lab","Testing laboratory"]
 ];
