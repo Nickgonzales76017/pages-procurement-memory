@@ -73,7 +73,7 @@ export function buyerBrief(s){
  "# Equipment acquisition — "+clean(lot.title),"",
  "Prepared for: "+clean(s.recipient),"Disposition context: proposed ITAD acquisition, not an accepted purchase.",
  "Source identity: "+clean(lot.subject),"Seller-reported description: "+clean(lot.claim),
- "Source URL: "+(r.source||"NOT SUPPLIED — request an exact original listing"),"",
+ "Seller source: "+(r.source?"Held privately for operator verification; not disclosed in buyer packet.":"NOT YET SOURCED — request exact original record"),"",
  "## Asset manifest — seller claims until inspected",
  ...r.rows.map(x=>"- "+clean(x.model)+" · "+x.qty+" units · "+x.grade+" · modeled recovery "+(x.recovery==null?"unpriced":money(x.recovery))+" per unit"),
  "Seller-reported headline count: "+lot.reportedCount+"; modeled count: "+a.units+
