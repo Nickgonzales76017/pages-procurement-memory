@@ -3,10 +3,12 @@ import assert from "node:assert/strict";
 import {fresh,cents,money,eligible,routePrice,optimize,parseTsv,validSource,toMarkdown,toYaff} from "../site/brief-studio/core.mjs";
 
 test("working domain scenarios remain distinct and bounded",()=>{
- const itad=fresh("itad"),estate=fresh("property"),supplier=fresh("supplier");
+ const itad=fresh("itad"),estate=fresh("property"),supplier=fresh("supplier"),civic=fresh("civic");
  assert.equal(itad.opportunities.length,3);
  assert.equal(estate.opportunities.length,1);
  assert.equal(supplier.opportunities.length,1);
+ assert.equal(civic.opportunities.length,1);
+ assert.equal(civic.opportunities[0].needs.find(x=>x.id==="rights").kind,"rights");
  assert.match(itad.opportunities[0].assertion,/35 HP desktops/);
  assert.equal(estate.opportunities[0].needs.find(x=>x.id==="title").kind,"title");
  assert.equal(supplier.opportunities[0].needs.find(x=>x.id==="capacity").kind,"capacity");
@@ -17,6 +19,8 @@ test("only a qualified specialist route can propose title coverage",()=>{
  assert.equal(eligible("desk","title"),false);
  assert.equal(eligible("field","title"),false);
  assert.equal(eligible("licensed","title"),true);
+ assert.equal(eligible("desk","rights"),false);
+ assert.equal(eligible("owner","rights"),true);
  assert.equal(eligible("owner","condition"),false);
  assert.equal(eligible("field","condition"),true);
  assert.equal(eligible("owner","model"),true);
