@@ -4,11 +4,19 @@ on:
     branches: [main]
     paths:
       - 'site/brief-studio/**'
+      - 'site/journey-kit/**'
+      - 'site/itad-exchange/**'
+      - 'site/estate-exit/**'
+      - 'tests/operating-rooms.test.mjs'
       - 'tests/brief-studio.test.mjs'
       - '.github/workflows/brief-studio-checks.yml'
   pull_request:
     paths:
       - 'site/brief-studio/**'
+      - 'site/journey-kit/**'
+      - 'site/itad-exchange/**'
+      - 'site/estate-exit/**'
+      - 'tests/operating-rooms.test.mjs'
       - 'tests/brief-studio.test.mjs'
 permissions:
   contents: read
@@ -24,5 +32,10 @@ jobs:
         run: |
           node --check site/brief-studio/core.mjs
           node --check site/brief-studio/studio.mjs
+          node --check site/journey-kit/room.mjs
+          node --check site/itad-exchange/core.mjs
+          node --check site/itad-exchange/app.mjs
+          node --check site/estate-exit/core.mjs
+          node --check site/estate-exit/app.mjs
       - name: Run decision and verification contracts
-        run: node --test tests/brief-studio.test.mjs
+        run: node --test tests/brief-studio.test.mjs tests/operating-rooms.test.mjs
