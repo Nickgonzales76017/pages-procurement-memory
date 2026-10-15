@@ -30,7 +30,7 @@ const base=profile=>({profile,recipient:"",decision:"hold",notes:"",briefHeading
  sections:[...SECTIONS],hidden:[],current:"",opportunities:[]});
 const item=(id,title,subject,source,assertion,needs,offers)=>({id,title,subject,source,assertion,needs,offers});
 export function fresh(profile){
- if(!["itad","property","supplier"].includes(profile))throw Error("Unknown example profile.");
+ if(!["itad","property","supplier","civic"].includes(profile))throw Error("Unknown example profile.");
  const s=base(profile);
  if(profile==="itad"){
   s.recipient="Illustrative ITAD buyer";s.budget=cents(145);s.briefHeading="Equipment acquisition screen";
@@ -60,6 +60,19 @@ export function fresh(profile){
   s.opportunities=[item("supplier-case","Proposed hardware supplier engagement","supplier:unassigned","","Illustrative supplier. Pricing, inventory, capacity, terms and carrier booking have not been confirmed.",
    [required("price","pricing","Dated quantity and unit pricing",5,"supplier offer"),required("capacity","capacity","Reserved stock and fulfillment capacity",5,"supplier confirmation"),required("delivery","delivery","Delivery responsibility and timing",3,"carrier quote"),required("rights","ownership","Right to supply and transfer goods",5,"seller documents")],
    [offer("email","Request complete quotation","owner",["price","rights"],0,0),offer("availability","Partner capacity confirmation","partner",["capacity","delivery"],25,30),offer("desk","Independent freight review","desk",["delivery"],20,35),offer("field","Onsite stock count","field",["capacity"],55,95,60,"supplier")])];
+ }
+ if(profile==="civic"){
+  s.recipient="Dallas civic research reviewer";s.budget=cents(100);s.briefHeading="Council agenda source review";
+  s.notes="A linked source record does not establish a vote, action, transcript accuracy, or recording reuse right.";
+  s.opportunities=[item("civic-template","Dallas Council file · source review","file:unassigned","","Start with an exact file-number handoff from Council Media, or enter your own official-source reference.",
+   [required("file","identity","Exact official agenda file identity",5,"Legistar file identifier"),
+    required("provenance","provenance","Original source and observation provenance",5,"official meeting record"),
+    required("rights","rights","Source or recording reuse rights",3,"source-owner confirmation"),
+    required("outcome","availability","What action, if any, occurred?",5,"official meeting outcome")],
+   [offer("agenda-desk","Official agenda desk check","desk",["file","provenance","outcome"],0,25),
+    offer("source-owner","Request source-owner permissions","owner",["rights"],0,0),
+    offer("recording","Review chaptered recording","remote-live",["outcome"],0,35)])
+  ];
  }
  s.current=s.opportunities[0].id;return s;
 }
