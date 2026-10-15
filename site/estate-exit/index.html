@@ -1,0 +1,84 @@
+<!doctype html><html lang="en"><head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="color-scheme" content="dark">
+<meta name="description" content="Fleming Estate-to-Exit: assemble exact parcel records, compare real underwriting assumptions, evaluate verification and prepare a controlled investor dossier without inventing title or sales.">
+<title>Fleming Estate-to-Exit · Aurekai</title>
+<link rel="stylesheet" href="../journey-kit/room.css"><script type="module" src="./app.mjs"></script>
+<style>.noGeometry{display:grid;place-items:center;height:100%;text-align:center;font:13px/1.9 ui-monospace,monospace;letter-spacing:.05em;color:#b6d6bd}.noGeometry small{font-size:11px;color:#94b29b;max-width:240px}.parcelScene{height:210px;overflow:hidden;background:repeating-linear-gradient(35deg,#263b2c 0 1px,#192c21 1px 17px);border-radius:7px;margin:15px 0}.parcelScene svg{width:100%;height:100%}.paper .critical{font-weight:700}.sources{display:grid;gap:9px;font:12px ui-monospace,monospace}.result strong{color:#c5e3b7}.dualNotes{border:1px solid #526d58;border-radius:6px;padding:12px;background:#20352a}</style></head><body>
+<div class="shell"><nav class="top"><a class="brand" href="../"><mark>A</mark>AUREKAI / WORK</a><div class="topLinks"><a href="../brief-studio/">Verification Brief Studio</a><a href="https://aurekai.work/">WORK</a><a href="https://aurekai-work-samples.pages.dev/">Samples</a></div></nav>
+ <header class="hero"><div>
+   <div class="eyebrow">Fleming / Acquisition → Exit / Dallas estate research</div>
+   <h1>A property is not<br>an <em>investment thesis.</em></h1>
+   <p>Start from an exact parcel record. Reconcile owner and estate questions, stress-test three exit strategies, price title and condition checks, and give a reviewer an actionable decision—not a fictional clear title or closed sale.</p>
+   <div class="heroActions"><a class="primary" href="#observe" onclick="document.querySelector('[data-chapter=observe]').click()">Open estate room ↗</a><a class="secondary" href="../brief-studio/?profile=property">Original property brief ↗</a></div>
+ </div><div class="heroArt"><svg viewBox="0 0 460 270" aria-hidden="true" xmlns="http://www.w3.org/2000/svg">
+   <path d="M10 226H450M20 176H440M30 124H430M20 72H440" stroke="#486d53" stroke-dasharray="4 10" fill="none"/>
+   <path d="M65 193L201 105L315 177L315 234H65Z" fill="#2c513a" stroke="#b6d8ad" stroke-width="2"/>
+   <path d="M42 188L198 82L346 191" fill="none" stroke="#dec08d" stroke-width="7" stroke-linecap="round"/>
+   <rect x="113" y="169" width="72" height="65" fill="#162d20" stroke="#c3daa9"/><rect x="214" y="172" width="61" height="32" fill="#a1c8aa" opacity=".72"/>
+   <path d="M334 90H410V214H334Z" fill="#1b382a" stroke="#789b7c"/><path d="M345 114H398M345 138H398M345 162H398" stroke="#d6bd8f"/><circle cx="379" cy="196" r="8" fill="#deb98a"/>
+   <text x="20" y="255" fill="#e2e6cf" font-size="11" letter-spacing="2">OBSERVE → UNDERWRITE → VERIFY → MATCH → DRAFT</text>
+ </svg><span class="artCaption">The graphic is conceptual; never an assessor boundary or surveyed drawing.</span></div></header>
+ <section class="introStrip"><p>Fleming's native estate already holds independent source discovery, municipal parcel projections, observation receipts, adjacency candidates, economic benchmarking, and operator work. This browser begins with unassigned parcel identity until a real source is supplied; it does not mirror those private native records.</p><span class="sourceTag">Title / authority / escrow unresolved</span></section>
+ <nav class="processRail" id="process" aria-label="Estate-to-exit progress"></nav>
+ <div class="layout"><main>
+   <section id="observe" class="scene surface active" data-scene="observe"><div class="hint">01 / PARCEL & OWNER LINEAGE</div><h2>Name the actual subject.</h2>
+     <p>Searchable identity is not legal ownership. Enter a real source coordinate or import a bounded list of permitted parcel observations; retain unresolved tax, estate and transfer questions.</p>
+     <div id="parcelChoices" class="choices"></div>
+     <div class="fieldGrid"><label>Exact parcel / account ID<input id="parcelInput" maxlength="90" placeholder="Official parcel identifier"></label><label>Address as recorded<input id="addressInput" maxlength="200" placeholder="Source-provided address"></label>
+     <label class="full">Original HTTPS parcel / tax source<input type="url" id="sourceInput" placeholder="https://official-source.example/parcel"></label>
+     <label>Recorded owner claim<input id="ownerInput" maxlength="160" placeholder="Unverified owner / estate coordinate"></label>
+     <label>Parcel width (ft; entered only)<input id="widthInput" type="number" min="1" max="20000"></label><label>Parcel depth (ft; entered only)<input id="depthInput" type="number" min="1" max="20000"></label>
+     <label class="full">Observed issues or missing materials<textarea id="notesInput" rows="3" maxlength="900" placeholder="Unrecorded heir, unpaid tax, uncertain access, source discrepancy…"></textarea></label></div>
+     <div class="parcelScene" id="plot"></div><div class="sources">Retained observation state: <span id="recordTag"></span> <a href="#" id="sourceLink" rel="noopener noreferrer" target="_blank" hidden>Open user-provided source ↗</a></div>
+     <div class="divider"></div><p>Optional external parcel candidates, local only. Bounded TSV: <code>parcel,address,source,owner,width_ft,depth_ft</code>. Nothing is inserted into an assessor, title system or Bonfÿre's native estate without a separate owner operation.</p>
+     <label>Reviewable parcel list<input type="file" id="parcelImport" accept=".tsv,text/tab-separated-values,text/plain"></label>
+   </section>
+   <section id="underwrite" class="scene surface" data-scene="underwrite"><div class="hint">02 / UNDERWRITE ALTERNATIVE EXITS</div><h2>Put assumptions under pressure.</h2>
+     <p>The economics are computed from your entries. No sold comps, rent surveys, inspection bids or financing rates are invented. Compare direct resale, rehabilitation and a hypothetical rental hold.</p>
+     <div class="choices" id="strategies"></div><div class="fieldGrid triple">
+       <label>Proposed purchase ($)<input id="purchaseInput" inputmode="decimal" placeholder="Not priced"></label>
+       <label>Modeled sale exit ($)<input id="exitInput" inputmode="decimal" placeholder="Not supported by comp yet"></label>
+       <label>Rehab budget ($)<input id="rehabInput" inputmode="decimal"></label>
+       <label>Monthly holding ($)<input id="monthlyHoldInput" inputmode="decimal"></label>
+       <label>Hold period (months)<input id="monthsInput" type="number" min="0" max="120"></label>
+       <label>Acquisition closing (%)<input id="closingPctInput" type="number" min="0" max="90"></label>
+       <label>Sale cost (%)<input id="salesPctInput" type="number" min="0" max="90"></label>
+       <label>Rehab contingency (%)<input id="contingencyPctInput" type="number" min="0" max="90"></label>
+       <label>Target profit / modeled exit (%)<input id="targetProfitPctInput" type="number" min="0" max="90"></label>
+       <label>Assumed monthly rent ($)<input id="monthlyRentInput" inputmode="decimal" placeholder="If considering a hold"></label>
+       <label>Annual operating burden ($)<input id="annualOperatingInput" inputmode="decimal" placeholder="Taxes, insurance, maintenance"></label>
+       <label>Cap rate assumption (%)<input id="capRatePctInput" type="number" min="0" max="90"></label></div>
+     <div id="mathResult" class="result"></div><div class="warning">A favorable modeled return is not an appraised value, market offer, finance approval or investor acceptance.</div>
+   </section>
+   <section id="verify" class="scene surface" data-scene="verify"><div class="hint">03 / CONTROLS AND OBJECTIONS</div><h2>Separate what is known from what must be checked.</h2>
+     <p>Native verification kinds cover parcel identity, tax, title, condition and authority. Record where documents came from and local review status. Legal title and signing capacity are never established by clicking a browser field.</p>
+     <div id="proofList" class="collection"></div><div class="fieldGrid">
+       <label>Verification budget ($)<input id="budgetInput" inputmode="decimal"></label>
+       <label>Compare methods<select id="verificationModeInput"><option value="exploratory">Exploratory estimates</option><option value="documented">Documented & ready only</option></select></label></div>
+     <div id="verificationResult" class="result"></div><div id="verificationRoutes" class="collection"></div>
+   </section>
+   <section id="match" class="scene surface" data-scene="match"><div class="hint">04 / RECIPIENT FIT, NOT INVENTED BUYER INTEREST</div><h2>Who could this economics fit?</h2>
+     <p>Use an actual team's constraints if known. Matching here compares the entered limit and modeled return; it does not assert a real investor is available or willing to sign.</p>
+     <div class="fieldGrid"><label class="full">Investor / builder review recipient<input id="investorName" maxlength="100"></label>
+       <label>Maximum modeled acquisition ($)<input id="investorLimit" inputmode="decimal" placeholder="Not provided"></label>
+       <label>Minimum required modeled return (%)<input id="investorMinProfit" type="number" min="0" max="90"></label>
+       <label class="full">Recipient notes and required follow-up<textarea id="investorNotes" rows="3" maxlength="850"></textarea></label></div>
+     <div id="fitResult" class="result"></div>
+   </section>
+   <section id="offer" class="scene surface" data-scene="offer"><div class="hint">05 / CONTROLLED OFFER PREPARATION</div><h2>Prepare the reviewer, not a fictional closing.</h2>
+     <p>A reviewed proposal includes modeled value, exact parcel and source coordinates, open title and tax questions, planned verification, and conditional buyer fit. Actual letters of intent, escrow, signatures and record changes remain outside this browser.</p>
+     <div class="fieldGrid"><label class="full">Dossier recipient<input id="recipient" maxlength="120"></label></div>
+     <button id="prepareOffer" class="primary">Prepare a local estate review packet</button><p id="offerState" class="statusLine"></p>
+     <p class="warning">Transfer authority and title require separate qualified evidence. No offer sent, no closing scheduled, no deposit charged.</p>
+   </section>
+   <section class="surface"><div class="surfaceHead"><div><div class="hint">HOLD THE WORK, NOT A SHADOW TITLE REGISTER</div><h3>Save a local revision and share a typed proposal.</h3></div><span class="hint" id="savedState">Unsaved</span></div>
+     <div class="buttonRow"><button id="saveDraft" class="primary">Save this workspace</button><button id="exportBrief">Download estate dossier (.md)</button><button id="exportYaff">Export owner proposal (.yaff)</button></div>
+     <p class="statusLine" id="message" aria-live="polite"></p><p class="ref">IndexedDB keeps browser-local revisions. Source observations are not promoted to native Fleming facts, WorkGraph missions, escrow events or communication logs.</p></section>
+ </main><aside class="paperWrap"><section class="paper" aria-label="Recipient-ready estate review">
+   <span class="eyebrow">Fleming / Live recipient dossier</span><h2 id="paperHeading">Parcel identity unresolved</h2>
+   <dl><dt>Parcel</dt><dd id="paperAddress"></dd><dt>Recipient</dt><dd id="paperRecipient"></dd><dt>Source</dt><dd id="paperSource"></dd><dt>Owner claim</dt><dd id="paperOwner"></dd></dl>
+   <h3>Modeled exit</h3><p id="paperEconomics"></p><h3>Verification route</h3><p id="paperVerify"></p><h3>Potential buyer fit</h3><p id="paperFit"></p>
+   <h3>Release boundary</h3><p class="critical" id="paperAuthority"></p><hr><footer>No title opinion, licensed survey, proof of access, recorded sale, or authorized conveyance is represented by this preview.</footer>
+ </section></aside></div>
+ <footer class="footer"><span>Aurekai · Fleming Estate-to-Exit operating-room candidate</span><span>Parcel records → analysis → proof → recipient dossier. No legal or commercial effect.</span></footer>
+</div></body></html>
