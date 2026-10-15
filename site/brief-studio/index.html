@@ -1,0 +1,103 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="color-scheme" content="dark"><meta name="description" content="Compose an acquisition brief, compare verification options and prepare a review for equipment, property or procurement opportunities.">
+<link rel="canonical" href="https://nickgonzales76017.github.io/pages-procurement-memory/brief-studio/">
+<title>Acquisition Brief Studio · Aurekai</title><link rel="stylesheet" href="./studio.css">
+<script type="module" src="./studio.mjs"></script></head>
+<body>
+<a class="skip" href="#workspace">Skip to studio</a>
+<header class="topbar">
+<a href="../" class="brand" aria-label="Procurement Memory home"><span class="brand-symbol">A<span>·</span></span><span>AUREKAI<small>WORK SAMPLES / PROCUREMENT</small></span></a>
+<nav class="topnav" aria-label="Experience navigation">
+<a href="../">Procurement memory</a>
+<a href="https://nickgonzales76017.github.io/pages-town-box/civic-council/">Council media</a>
+<a href="https://aurekai-work-samples.pages.dev/">All work samples ↗</a>
+</nav>
+<div class="header-status"><span class="online-dot"></span><span>Local workspace</span></div>
+</header>
+<main id="workspace">
+<div class="intro">
+<div class="eyebrow">BUYER INTELLIGENCE / REUSABLE DECISION WORKBENCH</div>
+<div class="intro-row"><div><h1>Make the next decision <em>worth checking.</em></h1>
+<p>From an unconfirmed opportunity to a brief someone can act on. Keep the source attached, price the missing checks, and choose what happens next.</p></div>
+<div class="intro-actions"><button id="save" class="primary">Save workspace</button><button id="export" class="secondary">Export brief ↓</button></div></div>
+</div>
+<section class="portfolio" aria-label="Choose a working example">
+<div class="portfolio-head"><span>01 / START WITH A WORKING EXAMPLE</span><span>Three domain views · One decision model</span></div>
+<div class="portfolio-cards">
+<button class="example active" data-profile="itad" type="button"><span class="example-no">01</span><strong>Equipment acquisition</strong><small>2nd Life example · buyer screening</small><span class="example-foot">Inventory, boot tests, collection ↗</span></button>
+<button class="example" data-profile="property" type="button"><span class="example-no">02</span><strong>Property acquisition</strong><small>Fleming example · estate research</small><span class="example-foot">Owner, tax, title, condition ↗</span></button>
+<button class="example" data-profile="supplier" type="button"><span class="example-no">03</span><strong>Supplier procurement</strong><small>Generic operations example</small><span class="example-foot">Quotes, capacity, freight ↗</span></button>
+</div>
+</section>
+<div class="studio-grid">
+<div class="editor">
+<section class="panel opportunity-panel">
+<div class="panel-head"><div><span class="eyebrow">02 / OPPORTUNITY</span><h2>What are you considering?</h2></div><span id="identityChip" class="chip">Illustrative source</span></div>
+<div class="record-picker"><label for="recordPicker">Working opportunities</label><select id="recordPicker"></select><button class="small-button" id="addOpportunity" type="button">+ New</button></div>
+<div class="form-grid">
+<label class="full">Opportunity title<input id="title" maxlength="160" autocomplete="off"></label>
+<label>Buyer or recipient<input id="recipient" maxlength="120"></label>
+<label>Opportunity reference<input id="subject" maxlength="160" placeholder="Lot number, parcel or buyer identifier"></label>
+<label class="full">Original source URL<input id="source" type="url" maxlength="420" placeholder="https://…"></label>
+<label class="full">What the source says<textarea id="assertion" rows="3" maxlength="1200"></textarea></label>
+</div>
+<div class="inline-actions"><a id="openSource" href="#" rel="noopener noreferrer" target="_blank" class="text-link">Open original source ↗</a><span class="subtle">An observation, seller statement and verified fact are different states.</span></div>
+</section>
+<section class="panel">
+<div class="panel-head"><div><span class="eyebrow">03 / REQUIRED CHECKS</span><h2>Which questions change the decision?</h2></div><span id="needCount" class="head-note">0 checks</span></div>
+<p class="helper">An answer can be supplied, unresolved, or reviewed. Marking it reviewed does not establish independent proof.</p>
+<div id="needsList" class="needs-list"></div>
+<form id="addNeedForm" class="add-form"><label>Question<input name="label" maxlength="120" placeholder="e.g. Can these devices boot?" required></label>
+<label>Proof kind<select name="kind" id="needKind"></select></label><label>Importance<select name="weight"><option value="5">Required</option><option value="3">Important</option><option value="1">Optional</option></select></label><button type="submit" class="small-button">Add check</button></form>
+</section>
+<section class="panel">
+<div class="panel-head"><div><span class="eyebrow">04 / VERIFICATION MARKET</span><h2>Compare ways to find out.</h2></div><span class="head-note">Indicative costs until quoted</span></div>
+<div class="budget-row"><label>Maximum verification budget (USD)<input id="budget" type="number" min="0" max="100000000" step=".01"></label>
+<label>Plan using<select id="planMode"><option value="exploratory">All eligible estimates</option><option value="documented">Recorded quotes with ready status</option></select></label>
+<button id="runPlan" type="button" class="primary">Compare routes ↗</button></div>
+<div class="offer-header"><span>Methods available for this opportunity</span><span>Travel is charged once per matching provider and visit group.</span></div>
+<div id="offerList" class="offer-list"></div>
+<details class="new-offer"><summary>Add a verification route</summary>
+<form id="addOfferForm" class="form-grid offer-form">
+<label>Route name<input name="id" placeholder="e.g. field-test" maxlength="72" required></label>
+<label>Provider or owner<input name="provider" placeholder="provider:local-team" maxlength="120" required></label>
+<label>Method<select name="method" id="offerMethod"></select></label>
+<label>Covers check IDs (comma separated)<input name="covers" maxlength="180" placeholder="model, boot"></label>
+<label>Base charge USD<input name="base" type="number" min="0" step=".01" value="0" required></label>
+<label>Labor USD<input name="labor" type="number" min="0" step=".01" value="0" required></label>
+<label>Travel USD<input name="travel" type="number" min="0" step=".01" value="0" required></label>
+<label>Visit group<input name="group" maxlength="60" placeholder="none or trip:houston"></label>
+<label>Quote status<select name="quote"><option value="estimate">Estimate</option><option value="quoted">Quoted</option></select></label>
+<label>Availability<select name="availability"><option value="unknown">Unknown</option><option value="conditional">Conditional</option><option value="ready">Recorded ready</option></select></label>
+<label class="full">Quote or availability reference<input name="quoteRef" maxlength="250" placeholder="Document/confirmation reference, if applicable"></label>
+<button type="submit" class="small-button">Add route for comparison</button>
+</form></details>
+<div id="routeResult" class="route-result" aria-live="polite"><p>Change the checks or budget to compare available routes.</p></div>
+</section>
+<section class="panel">
+<div class="panel-head"><div><span class="eyebrow">05 / BUYER DECISION</span><h2>Prepare the next action.</h2></div></div>
+<div class="form-grid">
+<label>Recommendation<select id="decision"><option value="hold">Hold pending checks</option><option value="request">Request verification quote</option><option value="review">Ready for buyer review</option><option value="decline">Decline opportunity</option></select></label>
+<label>Brief heading<input id="briefHeading" maxlength="150"></label>
+<label class="full">Decision notes<textarea id="notes" rows="4" maxlength="1500" placeholder="What would change the decision? Who must approve?"></textarea></label>
+</div>
+<div class="inline-actions"><button id="copy" class="small-button">Copy brief</button><button id="exportYaff" class="small-button">Export typed handoff</button><button id="print" class="small-button">Print / save PDF</button></div>
+</section>
+</div>
+<aside class="preview-col">
+<section class="preview-panel">
+<div class="preview-top"><span class="eyebrow">LIVE / RECIPIENT PREVIEW</span><span class="preview-state" id="saveStatus" role="status">Open a working example</span></div>
+<div class="paper"><div class="paper-rule"></div><span class="paper-eyebrow" id="paperProfile">ACQUISITION SCREEN</span><h2 id="paperTitle"></h2><div id="paperBody"></div><footer id="paperFooter"></footer></div>
+<div class="preview-bottom"><span>Reorders and changes carry into exports</span><div id="sectionToggles" class="section-toggles"></div></div>
+</section>
+<div class="next-panel"><h3>Continue the work</h3><p>Bring the reviewed brief to the native institutional workbench. This preview does not contact vendors, dispatch inspectors or authorize an offer.</p>
+<a href="https://aurekai.work/studio/" target="_blank" rel="noopener noreferrer" class="next-link">Open Aurekai Work ↗</a>
+<a href="../" class="muted-link">Return to procurement memory</a>
+</div></aside>
+</div>
+<section class="batch-panel"><div><span class="eyebrow">06 / MORE THAN ONE OPPORTUNITY</span><h2>Bring a batch, keep the identities.</h2><p>Import a tab-separated file with columns <code>title</code>, <code>subject</code>, <code>source</code>, <code>assertion</code>. Each row becomes an individually reviewable lead with the current domain's required checks. Files stay in this browser.</p></div><label class="upload-button">Import TSV <input id="importTsv" type="file" accept=".tsv,text/tab-separated-values,text/plain" hidden></label></section>
+<div class="foot-note"><span>Built on Bonfÿre's shared acquisition and verification model · Browser-local draft</span><span>Actual provider quotes, proof admission and dispatch require separate owners.</span></div>
+</main>
+<div id="toast" class="toast" role="status" aria-live="polite"></div>
+</body></html>
