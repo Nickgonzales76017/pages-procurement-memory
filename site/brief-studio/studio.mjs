@@ -1,6 +1,6 @@
 import {KINDS,METHODS,SECTIONS,fresh,cents,money,escaped,validSource,eligible,
  optimize,parseTsv,toMarkdown,toYaff,briefContent,routePrice} from "./core.mjs";
-const $=id=>document.getElementById(id),h=escaped,profiles=["itad","property","supplier"];
+const $=id=>document.getElementById(id),h=escaped,profiles=["itad","property","supplier","civic"];
 let profile="itad",state=fresh(profile),revision=0,dirty=false,db;
 let toastTimer=null;
 const value=(id)=>$(id).value;
@@ -88,7 +88,7 @@ function result(){
 }
 function preview(){
  let b;try{b=briefContent(state);}catch(error){$("paperBody").textContent=error.message;return;}
- $("paperProfile").textContent=state.profile==="itad"?"IT ASSET ACQUISITION":state.profile==="property"?"PROPERTY ACQUISITION":"SUPPLIER PROCUREMENT";
+ $("paperProfile").textContent=state.profile==="itad"?"IT ASSET ACQUISITION":state.profile==="property"?"PROPERTY ACQUISITION":state.profile==="civic"?"CIVIC SOURCE REVIEW":"SUPPLIER PROCUREMENT";
  $("paperTitle").textContent=b.title;
  const sections=[];
  for(const section of b.sections){
@@ -215,4 +215,33 @@ $("importTsv").addEventListener("change",event=>safe(async()=>{
  notice(rows.length+" opportunities imported as drafts. Save the workspace to retain them.");
  event.target.value="";
 }));
-(async()=>{try{db=await openDB();await switchProfile("itad");}catch(error){render();notice("Browser-local draft storage is unavailable. Exports still work.",true);}})();
+async function openIncomingCivicSource(){
+ const p=new URL(window.location.href).searchParams;
+ if(p.get("handoff")!=="civic")return;
+ const file=(p.get("subject")||"").slice(0,160);
+ const source=(p.get("source")||"").slice(0,420);
+ const title=(p.get("title")||"Dallas Council source record").slice(0,160);
+ const assertion=(p.get("assertion")||"A civic source record was selected for review.").slice(0,1200);
+ if(!/^\\d{2}-\\d{4}[A-Z]$/.test(file))throw Error("Council handoff requires an exact official file number.");
+ if(!validSource(source)||!["cityofdallas.legistar.com","dallastx.new.swagit.com"].includes(new URL(source).hostname))
+  throw Error("Council handoff refused: official source URL required.");
+ await switchProfile("civic");
+ const id="civic-"+file.toLowerCase();
+ let existing=state.opportunities.find(x=>x.id===id);
+ if(!existing){
+  existing=makeOpportunity(title,file,source,assertion);
+  existing.id=id;
+  const proof=String(p.get("proof")||"").slice(0,230);
+  for(const pair of proof.split(",").filter(Boolean).slice(0,4)){
+   const kind=pair.split(":")[0];
+   if(!KINDS.some(x=>x[0]===kind)||existing.needs.some(n=>n.kind===kind)||existing.needs.length>=16)continue;
+   existing.needs.push({id:"requested-"+kind,kind,label:"Additional "+kind+" review",weight:3,source:"Council Media reviewer request",status:"missing"});
+  }
+  state.opportunities.push(existing);
+ }
+ state.current=id;
+ if(!state.notes)state.notes="Imported from Dallas Council Media. Compare official sources and review the outcome before publication.";
+ markDirty();render();
+ notice("Official civic record linked. Save this browser draft to keep your review.");
+}
+(async()=>{try{db=await openDB();await switchProfile("itad");await openIncomingCivicSource();}catch(error){render();notice(error.message||"Browser-local draft storage is unavailable.",true);}})();
