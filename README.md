@@ -5,6 +5,18 @@ Two Aurekai experiences for teams that make buying, supplier and acquisition dec
 **[Open Acquisition Brief Studio](https://nickgonzales76017.github.io/pages-procurement-memory/brief-studio/)**  
 **[Open Procurement Memory](https://nickgonzales76017.github.io/pages-procurement-memory/)**
 
+## Aurekai / Bonfÿre: product contract
+
+| | This experience |
+|---|---|
+| **For** | Buyers and sourcing teams |
+| **Outcome** | Prepare reviewable acquisitions, supplier comparisons and provenance |
+| **Technical boundary** | A GitHub Pages experience showing source-aware, reviewable work; do not infer a deployed native Bonfÿre executor from the browser UI |
+| **Maturity** | Illustrative sourcing and local reviews; not a confirmed offer or purchase |
+| **Acceptance** | Follow the linked experience and inspect its actual source, tests, workflow and exported artifacts; an illustrative action is not proof of a downstream effect |
+
+**Aurekai** owns the product, public participation and business opportunity. **Bonfÿre** owns the reusable identity, capability, authorization, work and evidence architecture. [Why the two exist](https://github.com/Nickgonzales76017/bonfyre/blob/main/docs/aurekai-bonfyre-model.md).
+
 ## Acquisition Brief Studio
 
 Use this workspace to turn an opportunity into a concise, reviewable buyer brief.
